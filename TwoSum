@@ -9,8 +9,9 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        for x in range(len(nums)):
-            for y in range(x+1, len(nums)):
-                if nums[x] + nums[y] == target:
-                    return [x,y]
-        # Using a double for loop ensures all test cases are passed, however, it is not the most efficient solution
+        d = dict([(value, key) for key, value in dict(enumerate(nums)).items()])
+        print(d)
+        for i, val in enumerate(nums):
+            if target-val in d and d[target-val] != i:
+                return [i, d[target-val]]   
+        # Utilizing Python Dictionaries to improve the efficiency of the solution, I created a dictionary from the input list then swapped the keys and values, allowing the program to more efficiently find the matching pair of numbers
