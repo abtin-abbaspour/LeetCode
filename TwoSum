@@ -9,9 +9,10 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        d = dict([(value, key) for key, value in dict(enumerate(nums)).items()])
-        print(d)
+        seen=dict()
         for i, val in enumerate(nums):
-            if target-val in d and d[target-val] != i:
-                return [i, d[target-val]]   
-        # Utilizing Python Dictionaries to improve the efficiency of the solution, I created a dictionary from the input list then swapped the keys and values, allowing the program to more efficiently find the matching pair of numbers
+            s=target-val
+            if s in seen:
+                return [seen[s],i]
+            seen[nums[i]]=i
+        # To make my solution more efficient, I only filled up the dictionary as needed instead of initializing it full
